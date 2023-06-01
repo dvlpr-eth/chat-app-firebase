@@ -30,10 +30,25 @@ window.addEventListener("DOMContentLoaded", function () {
       .catch((err) => console.log("Error", err));
   }
 
-  function deleteChat() {
-    console.log("Delete");
+  function deleteChat(id) {
+    console.log("Delete", id);
+    db.collection("Chat")
+      .doc(id)
+      .delete()
+      .then(() => console.log("Document successfully deleted"))
+      .catch(() => console.log("Error deleting the document"));
   }
+
+  function updateChat(id, msg) {
+    db.collection("Chat").doc(id).update({
+      message: msg,
+    });
+  }
+
   function init() {
+    // setTimeout(() => {
+    //   updateChat("NOIRNnevtMY7JCezJYXo", "Bye");
+    // }, 5000);
     db.collection("Chat")
       .orderBy("timestamp", "asc")
       .onSnapshot(function (querySnapshot) {
@@ -44,10 +59,10 @@ window.addEventListener("DOMContentLoaded", function () {
           li.style = `
           background-color: #dfdfdf;
           font-size: 17px;
-          padding: 10px 30px;
+          padding: 10px 50px 10px 30px;
           margin: 10px 0;
           line-height: 50px;
-          width: 300px;
+          width: fit-content;
           border-radius: 40px;
           position: relative;
         display: flex;
@@ -59,11 +74,12 @@ window.addEventListener("DOMContentLoaded", function () {
           span.innerHTML = "&#10005;";
           span.style = `
           position: absolute;
-          right: 30px;
+          right: 20px;
           color: #d31616;
-          cursor:pointer
+          cursor:pointer;
+          margin-left:20px
           `;
-          span.addEventListener("click", deleteChat);
+          span.addEventListener("click", () => deleteChat(doc.id));
           li.appendChild(span);
           list.appendChild(li);
         });
