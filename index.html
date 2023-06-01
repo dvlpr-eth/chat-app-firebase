@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firebase Database</title>
+    <style>
+      * {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Chat App</h1>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <form id="form">
+      Nickname:
+      <input type="text" id="nickname" />
+      <br />
+      <br />
+      Message:
+      <input type="text" id="message" />
+      <br />
+      <br />
+      <input type="submit" value="Send" />
+    </form>
+    <ul id="list" style="list-style: none; padding: 0"></ul>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyAh9Y9SnFb2Auw31pGfpYFUQRx41VAhN3E",
+        authDomain: "humber-summer-23.firebaseapp.com",
+        projectId: "humber-summer-23",
+        storageBucket: "humber-summer-23.appspot.com",
+        messagingSenderId: "117190515489",
+        appId: "1:117190515489:web:ca6075d05e3aa81b9e7c60",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="./scripts.js"></script>
+  </body>
+</html>
